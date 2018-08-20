@@ -1,0 +1,89 @@
+﻿@model IEnumerable<StoreHouse.Models.Stock>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table display" id="tbl_stock">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+            
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.ProductID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.stock)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.purchase_price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.sale_price)
+                    </td>
+
+                </tr>
+            }*@
+        
+    </tbody>
+</table>
+@section styles {
+    <link rel="stylesheet" type="text/css" href="~/lib/DataTables/css/jquery.dataTables.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/DataTables/css/dataTables.bootstrap.css" />
+}
+
+@section Scripts {
+    <script src="~/lib/DataTables/js/jquery.dataTables.js"></script>
+    <script src="~/lib/DataTables/js/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tbl_stock").DataTable({
+                serverSide: true,
+                ajax: {
+                    url: "@Url.Action("Post","Stock")",
+                    type : "POST"
+                },
+                columns: [
+                    {
+                            data: "name",
+                            title: "@Html.DisplayNameFor(model => model.name)"
+
+                    },
+                    {
+                            data: "stock",
+                            title: "@Html.DisplayNameFor(model => model.stock)"
+
+                    },
+
+                ]
+
+
+            });
+        });
+
+    </script>
+    
+}
+

@@ -1,0 +1,153 @@
+﻿@model IEnumerable<StoreHouse.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table display" id="tbl_product">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.purchase_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sale_price)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.currency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.url)
+        </th>*@
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.purchase_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sale_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.currency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.url)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
+                </td>
+            </tr>
+        }*@
+    </tbody>
+</table>
+@section styles {
+    <link rel="stylesheet" type="text/css" href="~/lib/DataTables/css/jquery.dataTables.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/DataTables/css/dataTables.bootstrap.css" />
+}
+
+@section Scripts {
+    <script src="~/lib/DataTables/js/jquery.dataTables.js"></script>
+    <script src="~/lib/DataTables/js/dataTables.bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tbl_product").DataTable({
+                serverSide: true,
+                ajax: {
+                    url: "@Url.Action("Post","Product")",
+                    type : "POST"
+                },
+                columns: [
+                    {
+                            data:   "productID",
+                            title: "@Html.DisplayNameFor(model=>model.ProductID)"
+
+                    },
+                    {
+                            data: "name",
+                            title: "@Html.DisplayNameFor(model=>model.name)"
+
+                    },
+                     {
+                            data: "description",
+                            title: "@Html.DisplayNameFor(model => model.description)"
+
+                    },
+                    {
+                            data: "stock",
+                            title: "@Html.DisplayNameFor(model=>model.stock)"
+
+                    },
+                    {
+                            data: "purchase_price",
+                            title: "@Html.DisplayNameFor(model => model.purchase_price)"
+
+                    },
+                    {
+                            data: "sale_price",
+                            title: "@Html.DisplayNameFor(model => model.sale_price)"
+
+                    },
+                    {
+                            data: "productID",
+                            orderable : false,
+                            render: function (data) {
+                            return "<a href=\"@Url.Action("Edit", "Products")/" + data +"\" class=\"btn btn-default\">Edit</a>" +
+                                    "<a href=\"@Url.Action("Delete", "Products")/" + data + "\" class=\"btn btn-danger\">Delete</a>";
+                                //http://localhost:53814/Products/Edit/1
+                            }
+                        }
+                    @*{
+                            data: "currency.",
+                            title: "@Html.DisplayNameFor(model => model.currency)"
+
+                    },
+                    {
+                            data: "url",
+                            title: "@Html.DisplayNameFor(model => model.url)"
+
+                    },*@
+
+                ]
+
+
+            });
+        });
+
+    </script>
+
+}

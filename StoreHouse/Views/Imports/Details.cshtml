@@ -1,0 +1,48 @@
+﻿@model StoreHouse.Models.Import
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Import</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.sale_price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.sale_price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Partner)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Partner.PartnerID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ImportID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

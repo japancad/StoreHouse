@@ -1,0 +1,60 @@
+﻿@model StoreHouse.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.stock)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.stock)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.purchase_price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.sale_price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.sale_price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.currency)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.currency)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.url)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.url)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ProductID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

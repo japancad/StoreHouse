@@ -1,0 +1,64 @@
+﻿@model IEnumerable<StoreHouse.Models.Stock>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.product.ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product.purchase_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product.sale_price)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product.ProductID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product.purchase_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product.sale_price)
+                </td>
+
+            </tr>
+        }
+        <div class="row">
+            <button class="btn btn-danger" id="tesztgomb">teszt</button>
+        </div>
+    </tbody>
+</table>
+
+
+

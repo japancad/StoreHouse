@@ -1,0 +1,12 @@
+D:\!!!Repos_Git\StoreHouse\StoreHouse\bin\Debug\netcoreapp2.0\StoreHouse.deps.json
+D:\!!!Repos_Git\StoreHouse\StoreHouse\bin\Debug\netcoreapp2.0\StoreHouse.runtimeconfig.json
+D:\!!!Repos_Git\StoreHouse\StoreHouse\bin\Debug\netcoreapp2.0\StoreHouse.runtimeconfig.dev.json
+D:\!!!Repos_Git\StoreHouse\StoreHouse\bin\Debug\netcoreapp2.0\StoreHouse.dll
+D:\!!!Repos_Git\StoreHouse\StoreHouse\bin\Debug\netcoreapp2.0\StoreHouse.pdb
+D:\!!!Repos_Git\StoreHouse\StoreHouse\obj\Debug\netcoreapp2.0\StoreHouse.csproj.CoreCompileInputs.cache
+D:\!!!Repos_Git\StoreHouse\StoreHouse\obj\Debug\netcoreapp2.0\StoreHouse.AssemblyInfoInputs.cache
+D:\!!!Repos_Git\StoreHouse\StoreHouse\obj\Debug\netcoreapp2.0\StoreHouse.AssemblyInfo.cs
+D:\!!!Repos_Git\StoreHouse\StoreHouse\obj\Debug\netcoreapp2.0\StoreHouse.dll
+D:\!!!Repos_Git\StoreHouse\StoreHouse\obj\Debug\netcoreapp2.0\StoreHouse.pdb
+d:\!!!Repos_Git\StoreHouse\StoreHouse\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\!!!Repos_Git\StoreHouse\StoreHouse\obj\Debug\netcoreapp2.0\StoreHouse.csprojResolveAssemblyReference.cache
