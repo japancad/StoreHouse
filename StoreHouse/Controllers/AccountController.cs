@@ -205,7 +205,7 @@ namespace StoreHouse.Controllers
         }
 
         [HttpGet]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         
         public IActionResult Register(string returnUrl = null)
         {
@@ -214,7 +214,7 @@ namespace StoreHouse.Controllers
         }
 
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {

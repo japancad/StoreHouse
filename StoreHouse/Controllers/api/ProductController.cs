@@ -24,21 +24,29 @@ namespace StoreHouse.Controllers.api
             _context = context;
         }
 
-        //[HttpGet]
-        //public IActionResult Get(IDataTablesRequest request)
-        //{
-        //    var products = _context.Product.ToList();
-        //    var vm = new List<Product>();
-        //    foreach (var product in products)
-        //    {
-        //        vm.Add(new Product { ProductID = product.ProductID,
-        //                             name = product.name, description = product.description,stock = product.stock, currency = product.currency,
-        //                             purchase_price = product.purchase_price, sale_price = product.sale_price, url = product.url });
-        //    }
-            
-        //    var response = DataTablesResponse.Create(request, vm.Count , vm.Count, vm);
-        //    return new DataTablesJsonResult(response,true);
-        //}
+        [HttpGet]
+        public IActionResult Get(IDataTablesRequest request)
+        {
+            var products = _context.Product.ToList();
+            var vm = new List<Product>();
+            foreach (var product in products)
+            {
+                vm.Add(new Product
+                {
+                    ProductID = product.ProductID,
+                    name = product.name,
+                    description = product.description,
+                    stock = product.stock,
+                    currency = product.currency,
+                    purchase_price = product.purchase_price,
+                    sale_price = product.sale_price,
+                    url = product.url
+                });
+            }
+
+            var response = DataTablesResponse.Create(request, vm.Count, vm.Count, vm);
+            return new DataTablesJsonResult(response, true);
+        }
 
         [HttpPost]
         public IActionResult Post(IDataTablesRequest request)

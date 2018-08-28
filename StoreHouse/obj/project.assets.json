@@ -12919,11 +12919,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\!!!Repos_Git\\StoreHouse\\StoreHouse\\StoreHouse.csproj",
+      "projectUniqueName": "D:\\wbp\\StoreHouse\\StoreHouse\\StoreHouse.csproj",
       "projectName": "StoreHouse",
-      "projectPath": "D:\\!!!Repos_Git\\StoreHouse\\StoreHouse\\StoreHouse.csproj",
+      "projectPath": "D:\\wbp\\StoreHouse\\StoreHouse\\StoreHouse.csproj",
       "packagesPath": "C:\\Users\\Japan\\.nuget\\packages\\",
-      "outputPath": "D:\\!!!Repos_Git\\StoreHouse\\StoreHouse\\obj\\",
+      "outputPath": "D:\\wbp\\StoreHouse\\StoreHouse\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -49,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.Product.name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ExportID">Edit</a> |
+                @*<a asp-action="Edit" asp-route-id="@item.ExportID">Edit</a> |*@
                 <a asp-action="Details" asp-route-id="@item.ExportID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ExportID">Delete</a>
             </td>

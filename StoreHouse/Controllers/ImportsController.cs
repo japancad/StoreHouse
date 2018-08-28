@@ -11,10 +11,14 @@ using StoreHouse.Models;
 
 namespace StoreHouse.Controllers
 {
+
+
+    
     [Authorize]
     public class ImportsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private int modifiesDb;
 
         public ImportsController(ApplicationDbContext context)
         {
@@ -66,7 +70,7 @@ namespace StoreHouse.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(import);
-                if (!ModifyProduct.modifyProductImport(import, _context))
+                if (!ModifyProduct.createImport(import, _context))
                 {
 
                 }
@@ -87,6 +91,7 @@ namespace StoreHouse.Controllers
             }
 
             var import = await _context.Import.SingleOrDefaultAsync(m => m.ImportID == id);
+            modifiesDb = import.quantity;
             if (import == null)
             {
                 return NotFound();
@@ -108,10 +113,16 @@ namespace StoreHouse.Controllers
                 return NotFound();
             }
 
+            
+
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (!ModifyProduct.editImport(import, modifiesDb, _context))
+                    {
+
+                    }
                     _context.Update(import);
                     await _context.SaveChangesAsync();
                 }
@@ -158,7 +169,15 @@ namespace StoreHouse.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            
+            
             var import = await _context.Import.SingleOrDefaultAsync(m => m.ImportID == id);
+            //sajat kod 
+            if (!ModifyProduct.deleteImport(import, _context))
+            {
+
+            }
+
             _context.Import.Remove(import);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

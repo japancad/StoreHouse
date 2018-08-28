@@ -15,6 +15,7 @@ namespace StoreHouse.Controllers
     public class ExportsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private int modifiesDb;
 
         public ExportsController(ApplicationDbContext context)
         {
@@ -66,7 +67,7 @@ namespace StoreHouse.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(export);
-                if (!ModifyProduct.modifyProductExport(export, _context))
+                if (!ModifyProduct.createExport(export, _context))
                 {
 
                 }
@@ -87,6 +88,7 @@ namespace StoreHouse.Controllers
             }
 
             var export = await _context.Export.SingleOrDefaultAsync(m => m.ExportID == id);
+            modifiesDb = export.quantity;
             if (export == null)
             {
                 return NotFound();
@@ -112,6 +114,10 @@ namespace StoreHouse.Controllers
             {
                 try
                 {
+                    if (!ModifyProduct.editExport(export, modifiesDb, _context))
+                    {
+
+                    }
                     _context.Update(export);
                     await _context.SaveChangesAsync();
                 }
@@ -159,6 +165,10 @@ namespace StoreHouse.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var export = await _context.Export.SingleOrDefaultAsync(m => m.ExportID == id);
+            if (!ModifyProduct.deleteExport(export, _context))
+            {
+
+            }
             _context.Export.Remove(export);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
