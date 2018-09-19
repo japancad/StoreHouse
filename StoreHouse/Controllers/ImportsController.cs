@@ -29,7 +29,8 @@ namespace StoreHouse.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Import.Include(i => i.Partner).Include(i => i.Product);
-            return View(await applicationDbContext.ToListAsync());
+            //return View(await applicationDbContext.ToListAsync());
+            return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
         }
 
         // GET: Imports/Details/5

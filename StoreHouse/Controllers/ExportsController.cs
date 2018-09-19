@@ -26,7 +26,8 @@ namespace StoreHouse.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
-            return View(await applicationDbContext.ToListAsync());
+            //return View(await applicationDbContext.ToListAsync());
+            return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
         }
 
         // GET: Exports/Details/5
