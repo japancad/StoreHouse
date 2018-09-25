@@ -56,8 +56,8 @@ namespace StoreHouse.Controllers
         // GET: Imports/Create
         public IActionResult Create()
         {
-            ViewData["PartnerID"] = new SelectList(_context.Partner, "PartnerID", "name");
-            ViewData["ProductID"] = new SelectList(_context.Product, "ProductID", "name");
+            ViewData["PartnerID"] = new SelectList(_context.Partner.OrderBy(x => x.name), "PartnerID", "name");
+            ViewData["ProductID"] = new SelectList(_context.Product.OrderBy(x=>x.name), "ProductID", "name");
             return View();
         }
 
