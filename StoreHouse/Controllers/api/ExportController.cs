@@ -63,47 +63,19 @@ namespace StoreHouse.Controllers.api
                     sale_price = export.sale_price
                 });
             }
-            var products = _context.Product.ToList();
-            var vmp = new List<Product>();
-            foreach (var product in products)
-            {
-                vmp.Add(new Product
-                {
-                    ProductID = product.ProductID,
-                    name = product.name,
-                    description = product.description,
-                    stock = product.stock,
-                    currency = product.currency,
-                    purchase_price = product.purchase_price,
-                    sale_price = product.sale_price,
-                    url = product.url
-                });
-            }
-
-            var partners = _context.Partner.ToList();
-            var vmpa = new List<Partner>();
-            foreach (var partner in partners)
-            {
-                vmpa.Add(new Partner
-                {
-                    PartnerID = partner.PartnerID,
-                    name = partner.name,
-                    description = partner.description,
-                    email = partner.email,
-                    phone = partner.phone
-                });
-            }
+           
+           
 
             //szürés keresöre    
-            var filteredVmpa = string.IsNullOrWhiteSpace(request?.Search.Value)
-                                            ? vmpa
-                                            : vmpa.Where(x => x.name.ToLowerInvariant().Contains(request.Search.Value.ToLowerInvariant()))
-                                            ;
-            var searchPartnerId = filteredVmpa.
             var filteredVm = string.IsNullOrWhiteSpace(request?.Search.Value)
-                                            ? vmp
-                                            : vmp.Where(x => x.name.ToLowerInvariant().Contains(request.Search.Value.ToLowerInvariant()))
+                                            ? vm
+                                            : vm.Where(x => x.Product.name.ToLowerInvariant().Contains(request.Search.Value.ToLowerInvariant()))
                                             ;
+          
+            //var filteredVm = string.IsNullOrWhiteSpace(request?.Search.Value)
+            //                                ? vmp
+            //                                : vmp.Where(x => x.name.ToLowerInvariant().Contains(request.Search.Value.ToLowerInvariant()))
+            //                                ;
 
             //Sorbarendezés
             //itt megnézük minél van beállitva rendezési paraméter
@@ -117,24 +89,24 @@ namespace StoreHouse.Controllers.api
 
                 if (column.Sort.Direction == SortDirection.Ascending)
                 {
-                    if (column.Field.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                    if (column.Field.Equals("ProductID", StringComparison.OrdinalIgnoreCase))
                     {
-                        filteredVm = filteredVm.OrderBy(c => c.name);
+                        filteredVm = filteredVm.OrderBy(c => c.Product.name);
                     }
-                    if (column.Field.Equals("Stock", StringComparison.OrdinalIgnoreCase))
+                    if (column.Field.Equals("PartnerID", StringComparison.OrdinalIgnoreCase))
                     {
-                        filteredVm = filteredVm.OrderBy(c => c.stock);
+                        filteredVm = filteredVm.OrderBy(c => c.Partner.name);
                     }
                 }
                 else
                 {
-                    if (column.Field.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                    if (column.Field.Equals("ProductID", StringComparison.OrdinalIgnoreCase))
                     {
-                        filteredVm = filteredVm.OrderByDescending(c => c.name);
+                        filteredVm = filteredVm.OrderByDescending(c => c.Product.name);
                     }
-                    if (column.Field.Equals("Stock", StringComparison.OrdinalIgnoreCase))
+                    if (column.Field.Equals("PartnerID", StringComparison.OrdinalIgnoreCase))
                     {
-                        filteredVm = filteredVm.OrderByDescending(c => c.stock);
+                        filteredVm = filteredVm.OrderByDescending(c => c.Partner.name);
                     }
                 }
 

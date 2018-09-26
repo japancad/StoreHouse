@@ -30,6 +30,13 @@ namespace StoreHouse.Controllers
             return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
         }
 
+        public async Task<IActionResult> IndexApi()
+        {
+            var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
+            //return View(await applicationDbContext.ToListAsync());
+            return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
+        }
+
         // GET: Exports/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -53,7 +60,7 @@ namespace StoreHouse.Controllers
         // GET: Exports/Create
         public IActionResult Create()
         {
-            ViewData["PartnerID"] = new SelectList(_context.Partner, "PartnerID", "name");
+            ViewData["PartnerID"] = new SelectList(_context.Partner.OrderBy(x => x.name), "PartnerID", "name");
             ViewData["ProductID"] = new SelectList(_context.Product.OrderBy(x=>x.name), "ProductID", "name");
             return View();
         }
