@@ -30,45 +30,70 @@ namespace StoreHouse.Controllers
         //    return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
         //}
         [HttpGet]
-        public async Task<IActionResult> Index(string searchStringPartner)
+        public async Task<IActionResult> Index(string searchStringPartner, string searchStringProduct, bool notUsed)
         {
             var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
             var partners = _context.Partner.ToList();
             var products = _context.Product.ToList();
-            
+
 
             if (!String.IsNullOrEmpty(searchStringPartner))
             {
-                var partner = partners.SingleOrDefault(s => s.name.Contains(searchStringPartner));
-                return View(await applicationDbContext.Where(x => x.PartnerID == partner.PartnerID).OrderByDescending(x => x.date).ToListAsync());
-            }
+                var partner = partners.SingleOrDefault(s => s.name.ToLowerInvariant().Contains(searchStringPartner.ToLowerInvariant()));
+                if (!(partner == null))
+                {
+                    return View(await applicationDbContext.Where(x => x.PartnerID == partner.PartnerID).OrderByDescending(x => x.date).ToListAsync());
+                }
 
+            }
+            if (!String.IsNullOrEmpty(searchStringProduct))
+            {
+                var product = products.Find(x => x.name.ToLowerInvariant().Contains(searchStringProduct.ToLowerInvariant()));
+                if (!(product == null))
+                {
+                    return View(await applicationDbContext.Where(x => x.ProductID == product.ProductID).OrderByDescending(x => x.date).ToListAsync());
+                }
+
+            }
 
             //return View(await applicationDbContext.ToListAsync());
             return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Index(string searchStringPartner, bool notUsed)
-        {
-            var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
-            var partners = _context.Partner.ToList();
-            var products = _context.Product.ToList();
+        //[HttpPost]
+        //public async Task<IActionResult> Index( string searchStringPartner, string searchStringProduct, bool notUsed)
+        //{
+        //    var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
+        //    var partners = _context.Partner.ToList();
+        //    var products = _context.Product.ToList();
             
 
-            if (!String.IsNullOrEmpty(searchStringPartner))
-            {
-                var partner = partners.SingleOrDefault(s => s.name.Contains(searchStringPartner));
-                return View(await applicationDbContext.Where(x => x.PartnerID == partner.PartnerID).OrderByDescending(x => x.date).ToListAsync());
-            }
+        //    if (!String.IsNullOrEmpty(searchStringPartner))
+        //    {
+        //        var partner = partners.SingleOrDefault(s => s.name.ToLowerInvariant().Contains(searchStringPartner.ToLowerInvariant()));
+        //        if (!(partner == null))
+        //        {
+        //            return View(await applicationDbContext.Where(x => x.PartnerID == partner.PartnerID).OrderByDescending(x => x.date).ToListAsync());
+        //        }
+                
+        //    }
+        //    if (!String.IsNullOrEmpty(searchStringProduct))
+        //    {
+        //        var product = products.SingleOrDefault(s => s.name.ToLowerInvariant().Contains(searchStringProduct.ToLowerInvariant()));
+        //        if (!(products == null))
+        //        {
+        //            return View(await applicationDbContext.Where(x => x.PartnerID == product.ProductID).OrderByDescending(x => x.date).ToListAsync());
+        //        }
+                
+        //    }
 
 
-            //return View(await applicationDbContext.ToListAsync());
-            return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
-        }
+        //    //return View(await applicationDbContext.ToListAsync());
+        //    return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
+        //}
 
         
-        public async Task<IActionResult> Search(string searchStringPartner, bool notUsed)
+        public async Task<IActionResult> Search(string searchStringPartner, string searchStringProduct,bool notUsed)
         {
             var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
             var partners = _context.Partner.ToList();
@@ -77,8 +102,18 @@ namespace StoreHouse.Controllers
 
             if (!String.IsNullOrEmpty(searchStringPartner))
             {
-                var partner = partners.SingleOrDefault(s => s.name.Contains(searchStringPartner));
+                var partner = partners.SingleOrDefault(s => s.name.ToLowerInvariant().Contains(searchStringPartner.ToLowerInvariant()));
                 return View(await applicationDbContext.Where(x => x.PartnerID == partner.PartnerID).OrderByDescending(x => x.date).ToListAsync());
+
+                
+            }
+            if (!String.IsNullOrEmpty(searchStringProduct))
+            {
+                var product = products.SingleOrDefault(s => s.name.Contains(searchStringProduct));
+                if (!(products == null))
+                {
+                    return View(await applicationDbContext.Where(x => x.PartnerID == product.ProductID).OrderByDescending(x => x.date).ToListAsync());
+                }
             }
 
 
