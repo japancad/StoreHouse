@@ -32,4 +32,6 @@ namespace StoreHouse.Models
         public Partner Partner { get; set; }
 
     }
+
+    
 }
