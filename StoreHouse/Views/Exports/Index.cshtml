@@ -13,11 +13,17 @@
 <form asp-controller="Exports" asp-action="Index" method="get">
     <p>
         Partner: <input type="text" name="SearchStringPartner">
+        
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<form asp-controller="Exports" asp-action="Search" method="get">
+    <p>
+        
         Product: <input type="text" name="SearchStringProduct">
         <input type="submit" value="Filter" />
     </p>
 </form>
-
 
 <table class="table">
     <thead>

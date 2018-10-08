@@ -93,32 +93,36 @@ namespace StoreHouse.Controllers
         //}
 
         
-        public async Task<IActionResult> Search(string searchStringPartner, string searchStringProduct,bool notUsed)
+        public IActionResult Search(string searchStringProduct,bool notUsed)
         {
             var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
-            var partners = _context.Partner.ToList();
             var products = _context.Product.ToList();
+            var vm = new List<Export>();
 
-
-            if (!String.IsNullOrEmpty(searchStringPartner))
+            foreach (var export in applicationDbContext)
             {
-                var partner = partners.SingleOrDefault(s => s.name.ToLowerInvariant().Contains(searchStringPartner.ToLowerInvariant()));
-                return View(await applicationDbContext.Where(x => x.PartnerID == partner.PartnerID).OrderByDescending(x => x.date).ToListAsync());
+                vm.Add(export);
+            }
 
-                
-            }
-            if (!String.IsNullOrEmpty(searchStringProduct))
-            {
-                var product = products.SingleOrDefault(s => s.name.Contains(searchStringProduct));
-                if (!(products == null))
-                {
-                    return View(await applicationDbContext.Where(x => x.PartnerID == product.ProductID).OrderByDescending(x => x.date).ToListAsync());
-                }
-            }
+            var er = searchStringProduct.Length == 0;
+            
+            var filteredVm = searchStringProduct.Length == 0
+                                            ? vm
+                                            : vm.Where(x => x.Product.name.ToLowerInvariant().Contains(searchStringProduct.ToLowerInvariant()))
+                                            ;
+
+            //if (!String.IsNullOrEmpty(searchStringProduct))
+            //{
+            //    var product = products.SingleOrDefault(s => s.name.Contains(searchStringProduct));
+            //    if (!(products == null))
+            //    {
+            //        return View(await applicationDbContext.Where(x => x.PartnerID == product.ProductID).OrderByDescending(x => x.date).ToListAsync());
+            //    }
+            //}
 
 
             //return View(await applicationDbContext.ToListAsync());
-            return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
+            return View(filteredVm);
         }
 
 
