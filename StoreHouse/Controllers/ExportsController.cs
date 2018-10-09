@@ -30,7 +30,7 @@ namespace StoreHouse.Controllers
         //    return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
         //}
         [HttpGet]
-        public async Task<IActionResult> Index(string searchStringPartner, string searchStringProduct, bool notUsed)
+        public async Task<IActionResult> Index(string searchStringPartner, bool notUsed)
         {
             var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
             var partners = _context.Partner.ToList();
@@ -46,15 +46,7 @@ namespace StoreHouse.Controllers
                 }
 
             }
-            if (!String.IsNullOrEmpty(searchStringProduct))
-            {
-                var product = products.Find(x => x.name.ToLowerInvariant().Contains(searchStringProduct.ToLowerInvariant()));
-                if (!(product == null))
-                {
-                    return View(await applicationDbContext.Where(x => x.ProductID == product.ProductID).OrderByDescending(x => x.date).ToListAsync());
-                }
-
-            }
+            
 
             //return View(await applicationDbContext.ToListAsync());
             return View(await applicationDbContext.OrderByDescending(x => x.date).ToListAsync());
