@@ -1,0 +1,75 @@
+﻿@model IEnumerable<StoreHouse.Models.Import>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Imports" asp-action="SearchPartner" method="get">
+    <p>
+        Partner: <input type="text" name="SearchStringPartner">
+
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<form asp-controller="Imports" asp-action="SearchProduct" method="get">
+    <p>
+
+        Product: <input type="text" name="SearchStringProduct">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.sale_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Partner)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sale_price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Partner.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.name)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ImportID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ImportID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ImportID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

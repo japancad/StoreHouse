@@ -1,27 +1,28 @@
-﻿@model IEnumerable<StoreHouse.Models.Import>
+﻿@model IEnumerable<StoreHouse.Models.Export>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Search";
 }
 
-<h2>Index</h2>
-<form asp-controller="Imports" asp-action="SearchPartner" method="get">
+<h2>Search</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Exports" asp-action="SearchPartner" method="get">
     <p>
         Partner: <input type="text" name="SearchStringPartner">
 
         <input type="submit" value="Filter" />
     </p>
 </form>
-<form asp-controller="Imports" asp-action="SearchProduct" method="get">
+<form asp-controller="Exports" asp-action="SearchProduct" method="get">
     <p>
 
         Product: <input type="text" name="SearchStringProduct">
         <input type="submit" value="Filter" />
     </p>
 </form>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -63,9 +64,9 @@
                     @Html.DisplayFor(modelItem => item.Product.name)
                 </td>
                 <td>
-                    @*<a asp-action="Edit" asp-route-id="@item.ImportID">Edit</a> |*@
-                    <a asp-action="Details" asp-route-id="@item.ImportID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ImportID">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.ExportID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ExportID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ExportID">Delete</a>
                 </td>
             </tr>
         }

@@ -10,14 +10,14 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<form asp-controller="Exports" asp-action="Index" method="get">
+<form asp-controller="Exports" asp-action="SearchPartner" method="get">
     <p>
         Partner: <input type="text" name="SearchStringPartner">
         
         <input type="submit" value="Filter" />
     </p>
 </form>
-<form asp-controller="Exports" asp-action="Search" method="get">
+<form asp-controller="Exports" asp-action="SearchProduct" method="get">
     <p>
         
         Product: <input type="text" name="SearchStringProduct">

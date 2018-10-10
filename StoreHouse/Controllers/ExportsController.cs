@@ -85,10 +85,10 @@ namespace StoreHouse.Controllers
         //}
 
         
-        public IActionResult Search(string searchStringProduct,bool notUsed)
+        public IActionResult SearchProduct(string searchStringProduct,bool notUsed)
         {
             var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
-            var products = _context.Product.ToList();
+            
             var vm = new List<Export>();
 
             foreach (var export in applicationDbContext)
@@ -96,11 +96,43 @@ namespace StoreHouse.Controllers
                 vm.Add(export);
             }
 
-            var er = searchStringProduct.Length == 0;
+           
             
-            var filteredVm = searchStringProduct.Length == 0
+            var filteredVm = searchStringProduct== null
                                             ? vm
                                             : vm.Where(x => x.Product.name.ToLowerInvariant().Contains(searchStringProduct.ToLowerInvariant()))
+                                            ;
+
+            //if (!String.IsNullOrEmpty(searchStringProduct))
+            //{
+            //    var product = products.SingleOrDefault(s => s.name.Contains(searchStringProduct));
+            //    if (!(products == null))
+            //    {
+            //        return View(await applicationDbContext.Where(x => x.PartnerID == product.ProductID).OrderByDescending(x => x.date).ToListAsync());
+            //    }
+            //}
+
+
+            //return View(await applicationDbContext.ToListAsync());
+            return View(filteredVm);
+        }
+
+        public IActionResult SearchPartner(string searchStringPartner, bool notUsed)
+        {
+            var applicationDbContext = _context.Export.Include(e => e.Partner).Include(e => e.Product);
+            //var products = _context.Product.ToList();
+            var vm = new List<Export>();
+
+            foreach (var export in applicationDbContext)
+            {
+                vm.Add(export);
+            }
+
+            //var er = searchStringPartner.Length == 0;
+
+            var filteredVm = searchStringPartner == null
+                                            ? vm
+                                            : vm.Where(x => x.Partner.name.ToLowerInvariant().Contains(searchStringPartner.ToLowerInvariant()))
                                             ;
 
             //if (!String.IsNullOrEmpty(searchStringProduct))
