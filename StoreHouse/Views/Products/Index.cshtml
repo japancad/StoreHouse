@@ -18,9 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.name)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.description)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.stock)
             </th>
@@ -29,6 +27,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.sale_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
             </th>
             @*<th>
             @Html.DisplayNameFor(model => model.currency)
@@ -102,11 +103,6 @@
                             title: "@Html.DisplayNameFor(model=>model.name)"
 
                     },
-                     {
-                            data: "description",
-                            title: "@Html.DisplayNameFor(model => model.description)"
-
-                    },
                     {
                             data: "stock",
                             title: "@Html.DisplayNameFor(model=>model.stock)"
@@ -122,6 +118,12 @@
                             title: "@Html.DisplayNameFor(model => model.sale_price)"
 
                     },
+                    ,
+                     {
+                            data: "description",
+                            title: "@Html.DisplayNameFor(model => model.description)"
+
+                    }
                     {
                             data: "productID",
                             orderable : false,
