@@ -35,11 +35,12 @@ namespace StoreHouse.Controllers.api
                 {
                     ProductID = product.ProductID,
                     name = product.name,
-                    description = product.description,
+                   
                     stock = product.stock,
                     currency = product.currency,
                     purchase_price = product.purchase_price,
                     sale_price = product.sale_price,
+                    description = product.description,
                     url = product.url
                 });
             }
