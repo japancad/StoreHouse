@@ -87,17 +87,14 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#tbl_product").DataTable({
+                paging: false,
                 serverSide: true,
                 ajax: {
                     url: "@Url.Action("Post","Product")",
                     type : "POST"
                 },
                 columns: [
-                    {
-                            data:   "productID",
-                            title: "@Html.DisplayNameFor(model=>model.ProductID)"
-
-                    },
+                   
                     {
                             data: "name",
                             title: "@Html.DisplayNameFor(model=>model.name)"

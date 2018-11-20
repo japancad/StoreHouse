@@ -68,11 +68,16 @@ namespace StoreHouse.Controllers.api
                     url = product.url
                 });
             }
-            //szürés keresöre    
+            //szürés keresöre  
+
+           
+
             var filteredVm = string.IsNullOrWhiteSpace(request?.Search.Value)
                                             ? vm
                                             : vm.Where(x => x.name.ToLowerInvariant().Contains(request.Search.Value.ToLowerInvariant()))
                                             ;
+            //Függetlenül mindentől sorbarendezük név szerint
+            filteredVm = filteredVm.OrderBy(c => c.name);
             //Sorbarendezés
             //itt megnézük minél van beállitva rendezési paraméter
             var sortColumns = request.Columns
@@ -80,6 +85,8 @@ namespace StoreHouse.Controllers.api
                                      .OrderBy(c => c.Sort.Order)
                                      .ToList();
             //rendezük az kapott paraméter alapján
+
+
             foreach (var column in sortColumns)
             {
 
@@ -110,7 +117,7 @@ namespace StoreHouse.Controllers.api
 
             //lapozas
 
-            var vmPage = filteredVm.Skip(request.Start).Take(request.Length).ToList();
+            var vmPage = filteredVm.Skip(request.Start).Take(200).ToList();
 
 
             var response = DataTablesResponse.Create(request, vm.Count, filteredVm.Count(), vmPage);
