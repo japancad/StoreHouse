@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="IIS Web Application Name" description="" value="Keszlet" tags="IisApp">
+  <parameter name="IIS Web Application Name" description="" value="store.dotnetcloud.co.uk" tags="IisApp">
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\wbp\\StoreHouse\\StoreHouse\\obj\\Release\\netcoreapp2\.0\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>
